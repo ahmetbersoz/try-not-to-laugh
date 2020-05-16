@@ -4,15 +4,15 @@ import Game from './Game';
 const steps = [
   {
     question: 'Question 1',
-    answers: 'Answer 1'
+    answer: 'Answer 1'
   },
   {
     question: 'Question 2',
-    answers: 'Answer 2'
+    answer: 'Answer 2'
   },
   {
     question: 'Question 3',
-    answers: 'Answer 3'
+    answer: 'Answer 3'
   }
 ];
 
