@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as faceapi from 'face-api.js'
 import stepsDB from './data/steps.json';
+import './App.css';
 
 let steps;
 const video = document.getElementById('video');
@@ -37,7 +38,7 @@ function App() {
 					detections.forEach(detection => {
 						setSmilePercent(detection.expressions.happy);
 
-						if (smilePercent > 0.5 && gameStatus === 'initial') start();
+						if (smilePercent > 0.3 && gameStatus === 'initial') start();
 						if (smilePercent > 0.2 && remainingTimeStarted) setGameStatus('fail');
 
 					});
@@ -95,32 +96,37 @@ function App() {
 	return (
 		<div>
 			<div>
-				<div>Smile level: {smilePercent.toFixed(5)}</div>
 				{gameStatus === 'initial' &&
-					<span>Smile to start!</span>
+					<div>
+						<h2>Oyuna başlamak için gülümseyin!</h2>
+						<p>
+							<b>Oyun kuralı: </b>
+							Sırayla soğuk espiriler gelecektir. Her espiriye 5 saniye gülmezseniz bir sonraki espriye geçersiniz. Gülerseniz kaybedersiniz. Hepsini gülmeden tamamlarsanız kazanırsınız.
+						</p>
+					</div>
 				}
 				{gameStatus === 'playing' &&
 					<div>
-						<div id="question">{step.question}</div>
-						<button onClick={() => showAnswer()}>Show Answer</button>
+						<div id="question"><h3>{step.question}</h3></div>
+						<button onClick={() => showAnswer()}>CEVABI GÖSTER</button>
 						{answerVisibility &&
 							<div>
-								<div id="answer">{step.answer}</div>
-								<div>Remaining time: {(remainingTime/1000).toFixed(0) > 0 ? (remainingTime/1000).toFixed(0) : 0}</div>
+								<div id="answer"><h3>{step.answer}</h3></div>
+								<div>{(remainingTime/1000).toFixed(0) > 0 ? (remainingTime/1000).toFixed(0) : 0}...</div>
 							</div>
 						}
 					</div>
 				}
 				{gameStatus === 'win' &&
 					<div>
-						<div>Congrats! You win</div>
-						<button onClick={start}>Play Again</button>
+						<h2>Tebrikler! Kazandın.</h2>
+						<button onClick={start}>TEKRAR OYNA</button>
 					</div>
 				}
 				{gameStatus === 'fail' &&
 					<div>
-						<div>Ooops! You fail</div>
-						<button onClick={start}>Play Again</button>
+						<h2>Maalesef... Kaybettin.</h2>
+						<button onClick={start}>TEKRAR OYNA</button>
 					</div>
 				}
 			</div>

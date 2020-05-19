@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -12,8 +11,16 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <video id="video" width="720" height="560" autoPlay muted></video>
-    <div style="clear: both"></div>
-    <div id="root"></div>
+    <header>
+      <h1>SOĞUK SAVAŞ!</h1>
+    </header>
+    <div class="container">
+      <div class="camera">
+        <video id="video" width="80%" autoPlay muted></video>
+      </div>
+      <div class="panel">
+        <div id="game"></div>
+      </div>
+    </div>
   </body>
 </html>
