@@ -1,25 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as faceapi from 'face-api.js'
+import stepsDB from './data/steps.json';
 
-const stepsDB = [
-	{
-		id: 1,
-		question: 'Question 1',
-		answer: 'Answer 1'
-	},
-	{
-		id: 2,
-		question: 'Question 2',
-		answer: 'Answer 2'
-	},
-	{
-		id: 3,
-		question: 'Question 3',
-		answer: 'Answer 3'
-	}
-];
 let steps;
-
 const video = document.getElementById('video');
 
 Promise.all([
