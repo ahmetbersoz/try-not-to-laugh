@@ -6,7 +6,7 @@ One of the projects that i have created to make react programming practice. Insp
 ## Demo
 https://try-not-to-laugh.netlify.app/
 
-![Alt text](https://github.com/ahmetbersoz/try-not-to-laugh/blob/master/public/ss/image.png?raw=true "Screenshot")
+![Alt text](https://raw.githubusercontent.com/ahmetbersoz/try-not-to-laugh/master/public/ss/image.png "Screenshot")
 
 
 ## Available Scripts
