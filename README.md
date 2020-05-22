@@ -2,6 +2,10 @@
 
 One of the projects that i have created to make react programming practice. Inspired from Turkish Youtube Video Series (https://www.youtube.com/watch?v=YMEFM_hW3ng&list=PLIdHk60qzADZXgT1xp5BaOi3N6hKPhAnx)
 
+
+## Demo
+https://try-not-to-laugh.netlify.app/
+
 ![Alt text](https://github.com/ahmetbersoz/try-not-to-laugh/blob/master/public/ss/image.png?raw=true "Screenshot")
 
 
