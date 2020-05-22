@@ -1,6 +1,23 @@
 body {
     background-color: black;
     color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 1.5em;
 }
 
 header {
@@ -20,3 +37,17 @@ header {
     text-align: center;
 }
 .panel { grid-area: 1 / 2 / 2 / 3; }
+
+.panel-content {
+    padding: 20px;
+}
+
+.answer {
+    color: yellow;
+    margin: 20px 0px;
+}
+
+.timer {
+    font-size: 3em;
+    font-weight: bold;
+}

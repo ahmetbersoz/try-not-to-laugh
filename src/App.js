@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import * as faceapi from 'face-api.js'
 import stepsDB from './data/steps.json';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import 'typeface-roboto';
 
 let steps;
 const video = document.getElementById('video');
@@ -32,6 +35,7 @@ function App() {
 		let timer;
 		if (gameStatus === 'initial' || gameStatus === 'playing' ) {
 			timer = setInterval(async () => {
+				if (!video.srcObject) return;
 				const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
 				
 				if (detections.length) {
@@ -94,42 +98,45 @@ function App() {
 	}
 
 	return (
-		<div>
-			<div>
+		<div className="panel-content">
+			<>
 				{gameStatus === 'initial' &&
-					<div>
-						<h2>Oyuna başlamak için gülümseyin!</h2>
+					<>
+						<h2>Oyuna başlamak için kameraya izin verip gülümseyin =)</h2>
 						<p>
 							<b>Oyun kuralı: </b>
 							Sırayla soğuk espiriler gelecektir. Her espiriye 5 saniye gülmezseniz bir sonraki espriye geçersiniz. Gülerseniz kaybedersiniz. Hepsini gülmeden tamamlarsanız kazanırsınız.
 						</p>
-					</div>
+					</>
 				}
 				{gameStatus === 'playing' &&
-					<div>
+					<>
 						<div id="question"><h3>{step.question}</h3></div>
-						<button onClick={() => showAnswer()}>CEVABI GÖSTER</button>
+						{!answerVisibility &&
+							<Button variant="primary" size="lg" onClick={() => showAnswer()}>CEVABI GÖSTER</Button>
+						}
+
 						{answerVisibility &&
 							<div>
-								<div id="answer"><h3>{step.answer}</h3></div>
-								<div>{(remainingTime/1000).toFixed(0) > 0 ? (remainingTime/1000).toFixed(0) : 0}...</div>
+								<div className="answer"><h3>{step.answer}</h3></div>
+								<div className="timer">{(remainingTime/1000).toFixed(0) > 0 ? (remainingTime/1000).toFixed(0) : 0}...</div>
 							</div>
 						}
-					</div>
+					</>
 				}
 				{gameStatus === 'win' &&
-					<div>
+					<>
 						<h2>Tebrikler! Kazandın.</h2>
-						<button onClick={start}>TEKRAR OYNA</button>
-					</div>
+						<Button variant="success" size="lg" onClick={start}>TEKRAR OYNA</Button>
+					</>
 				}
 				{gameStatus === 'fail' &&
-					<div>
+					<>
 						<h2>Maalesef... Kaybettin.</h2>
-						<button onClick={start}>TEKRAR OYNA</button>
-					</div>
+						<Button variant="danger" size="lg" onClick={start}>TEKRAR OYNA</Button>
+					</>
 				}
-			</div>
+			</>
 		</div>
 	);
 }
