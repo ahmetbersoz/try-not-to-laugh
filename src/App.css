@@ -1,49 +1,17 @@
-body {
-    background-color: black;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-}
-
-h1 {
-    font-size: 4em;
-}
-
-h2 {
-    font-size: 2em;
-}
-
-h3 {
-    font-size: 1.5em;
-}
-
-p {
-    font-size: 1.5em;
-}
-
 header {
     text-align: center;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    margin: 20px;
 }
 
 .camera { 
-    grid-area: 1 / 1 / 2 / 2; 
     text-align: center;
 }
-.panel { grid-area: 1 / 2 / 2 / 3; }
 
 .panel-content {
     padding: 20px;
 }
 
 .answer {
-    color: yellow;
     margin: 20px 0px;
 }
 

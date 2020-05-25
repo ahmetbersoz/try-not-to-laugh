@@ -102,7 +102,7 @@ function App() {
 			<>
 				{gameStatus === 'initial' &&
 					<>
-						<h2>Oyuna başlamak için kameraya izin verip gülümseyin =)</h2>
+						<h3>Oyuna başlamak için kameraya izin verip gülümseyin =)</h3>
 						<p>
 							<b>Oyun kuralı: </b>
 							Sırayla soğuk espiriler gelecektir. Her espiriye 5 saniye gülmezseniz bir sonraki espriye geçersiniz. Gülerseniz kaybedersiniz. Hepsini gülmeden tamamlarsanız kazanırsınız.
@@ -111,7 +111,7 @@ function App() {
 				}
 				{gameStatus === 'playing' &&
 					<>
-						<div id="question"><h3>{step.question}</h3></div>
+						<div id="question"><h4>{step.question}</h4></div>
 						{!answerVisibility &&
 							<Button variant="primary" size="lg" onClick={() => showAnswer()}>CEVABI GÖSTER</Button>
 						}
