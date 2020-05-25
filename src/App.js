@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import useInterval from './customHooks/useInterval';
 import * as faceapi from 'face-api.js'
 import stepsDB from './data/steps.json';
 import Button from 'react-bootstrap/Button';
@@ -24,6 +25,7 @@ function startVideo() {
 
 function App() {
 	const timeStep = 5000; //milliseconds
+	const tickInterval = 250;
 	const [gameStatus, setGameStatus] = useState('initial'); //'initial', 'playing, 'win', 'fail'
 	const [smilePercent, setSmilePercent] = useState(0); //0-1
 	const [step, setStep] = useState({ id: 0, question: '', answer: '' });
@@ -31,47 +33,36 @@ function App() {
 	const [remainingTime, setRemainingTime] = useState(timeStep);
 	const [remainingTimeStarted, setRemainingTimeStarted] = useState(false);
 
-	useEffect(() => {
-		let timer;
+	useInterval(async () => {
 		if (gameStatus === 'initial' || gameStatus === 'playing' ) {
-			timer = setInterval(async () => {
-				if (!video.srcObject) return;
-				const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
-				
-				if (detections.length) {
-					detections.forEach(detection => {
-						setSmilePercent(detection.expressions.happy);
+			if (!video.srcObject) return;
+			const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
 
-						if (smilePercent > 0.3 && gameStatus === 'initial') start();
-						if (smilePercent > 0.2 && remainingTimeStarted) setGameStatus('fail');
+			if (detections.length) {
+				detections.forEach(detection => {
+					setSmilePercent(detection.expressions.happy);
 
-					});
-				}
-			}, 100);
-		} else {
-			clearInterval(timer);
-		}
-		return () => clearInterval(timer);
-	}, [gameStatus, smilePercent])
+					if (smilePercent > 0.3 && gameStatus === 'initial') start();
+					if (answerVisibility && smilePercent > 0.2 && remainingTimeStarted) {
+						setAnswerVisibility(false);
+						setRemainingTimeStarted(false);
+						setRemainingTime(timeStep);
+						setGameStatus('fail');
+					}
+				});
+			}
 
-	useEffect(() => {
-		let timer;
-		if (remainingTimeStarted) {
-			timer = setInterval(async () => {
-				if (remainingTime === 0) {
+			if (answerVisibility) {
+				if (remainingTime <= 0) {
 					setAnswerVisibility(false);
 					setRemainingTimeStarted(false);
 					setRemainingTime(timeStep);
 					goNextStep();
 				}
-
-				setRemainingTime(remainingTime => remainingTime - 100);
-			}, 100);
-		} else {
-			clearInterval(timer);
+				else setRemainingTime(remainingTime => remainingTime - tickInterval);
+			}
 		}
-		return () => clearInterval(timer);
-	}, [remainingTimeStarted, remainingTime])
+	}, tickInterval);
 
 	function start() {
 		steps = stepsDB.slice(0);
