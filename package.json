@@ -23,6 +23,12 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "overrides": {
+    "postcss": "^8.5.12"
+  },
+  "resolutions": {
+    "postcss": "^8.5.12"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
