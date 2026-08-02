@@ -11,23 +11,42 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "typeface-roboto": "0.0.75"
   },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "overrides": {
-    "postcss": "^8.5.12"
+    "postcss": "^8.5.12",
+    "nth-check": "^2.1.1",
+    "svgo": "^3.0.0",
+    "node-fetch": "^2.7.0",
+    "serialize-javascript": "^7.0.7",
+    "uuid": "^11.1.1",
+    "underscore": "^1.13.8",
+    "@tootallnate/once": "^2.0.1",
+    "webpack-dev-server": "6.0.0"
   },
   "resolutions": {
-    "postcss": "^8.5.12"
+    "postcss": "^8.5.12",
+    "nth-check": "^2.1.1",
+    "svgo": "^3.0.0",
+    "node-fetch": "^2.7.0",
+    "serialize-javascript": "^7.0.7",
+    "uuid": "^11.1.1",
+    "underscore": "^1.13.8",
+    "@tootallnate/once": "^2.0.1",
+    "webpack-dev-server": "6.0.0"
   },
   "browserslist": {
     "production": [
